@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Lorem Ipsum</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .main-box {
+        background-color: rgba(255, 255, 255);
+        border-radius: 15px;
+        padding: 60px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        max-width: 700px;
+        width: 90%;
+      }
+
+      .lorem {
+        color: #8D4B44; /* Cor para "Lorem" */
+      }
+
+      .ipsum {
+        color: #C78C19; /* Cor para "Ipsum" */
+      }
+    </style>
+</head>
+
+<body style="background-color: #D9C19C; height: 100vh;" class="d-flex align-items-center justify-content-center">
+
+    <div class="main-box">
+        <div class="text-center mb-4">
+            <h1>
+                <span class="lorem">Lorem</span> <span class="ipsum">Ipsum</span>
+            </h1>
+            <p>Gerador de parágrafos de texto Lorem Ipsum.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4 border-0">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+
+                    <form method="POST" action="{{ url_for('index') }}">
+                        <div class="mb-3">
+                            <label for="num_paragrafos" class="form-label">Número de parágrafos</label>
+                            <input type="number" class="form-control" name="num_paragrafos" id="num_paragrafos" min="1" placeholder="Ex: 3" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="num_palavras" class="form-label">Número de palavras por parágrafo</label>
+                            <input type="number" class="form-control" name="num_palavras" id="num_palavras" min="1" placeholder="Ex: 50" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="idioma" class="form-label">Escolha de idioma</label>
+                            <select class="form-select" name="idioma" id="idioma" required>
+                                <option value="latim" selected>Latim (clássico)</option>
+                                <option value="portugues">Português</option>
+                                <option value="ingles">Inglês</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn w-50" style="background-color: #8D4B44; color: white;">Gerar Texto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
